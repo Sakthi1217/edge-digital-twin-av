@@ -12,6 +12,12 @@ import carla
 import random, time, os, csv, json, socket, threading
 import numpy as np
 import cv2, math
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--dt-host", default="127.0.0.1", help="DT host IP")
+parser.add_argument("--vu-host", default="127.0.0.1", help="VU host IP")
+args = parser.parse_args()
 
 # -------------- CONFIG --------------
 OUTPUT_DIR = "run_output"
@@ -26,9 +32,9 @@ INIT_FRAMES = 200  # change this to the number of frames you want recorded first
 NUM_COVS = 3
 
 # UDP / networking
-DT_HOST = "127.0.0.1"
+DT_HOST = args.dt_host
 DT_CSV_READY_PORT = 7010      # VU -> DT csv ready notice
-VU_HOST = "127.0.0.1"
+VU_HOST = args.vu_host
 VU_META_PORT = 6008           # DT -> VU metadata (we listen here)
 
 # camera settings
